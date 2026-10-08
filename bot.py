@@ -38,10 +38,22 @@ logger.add(sys.stderr, level="INFO")
 PERSONAJE = Path("personajes/tenebrio.md").read_text(encoding="utf-8")
 
 
+def _indice(nombre: str):
+    valor = os.getenv(nombre)
+    return int(valor) if valor else None
+
+
 async def main():
     # Micro y altavoz del ordenador
+
+    # (dentro de main)
     transport = LocalAudioTransport(
-        LocalAudioTransportParams(audio_in_enabled=True, audio_out_enabled=True)
+        LocalAudioTransportParams(
+            audio_in_enabled=True,
+            audio_out_enabled=True,
+            input_device_index=_indice("AUDIO_IN"),  # vacío = dispositivo por defecto
+            output_device_index=_indice("AUDIO_OUT"),
+        )
     )
 
     # Oído: ElevenLabs Scribe en tiempo real, en español
