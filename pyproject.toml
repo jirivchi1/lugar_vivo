@@ -1,0 +1,10 @@
+[project]
+name = "17-lugar-campo"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pipecat-ai[anthropic,elevenlabs,local,silero]>=1.12.0",
+    "python-dotenv>=1.2.4",
+]
